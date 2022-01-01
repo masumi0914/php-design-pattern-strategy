@@ -1,25 +1,25 @@
 <?php
 require_once 'vendor/autoload.php';
 
-use App\Exchanges\DollarExchange;
-use App\Exchanges\EuroExchange;
-use App\Exchanges\PoundExchange;
-use App\Exchanges\YuanExchange;
+use App\Shape\TriangleStrategy;
+use App\Shape\SquareStrategy;
+use App\Shape\CircleStrategy;
 
-$jp_yen = 1000;
+$radius = 10;
+$width = 10;
+$height = 10;
 
-$dollar = new DollarExchange($jp_yen);
-$euro = new EuroExchange($jp_yen);
-$pond = new PoundExchange($jp_yen);
-$Yuan = new YuanExchange($jp_yen);
+$TriangleStrategy = new TriangleStrategy($width, $height);
+$SquareStrategy = new SquareStrategy($width, $height);
+$CircleStrategy = new CircleStrategy($radius);
 
-echo sprintf('JPY %d<br>↓', $jp_yen);
+echo sprintf('半径 %d, ', $radius);
+echo sprintf('横幅 %d, ', $width);
+echo sprintf('高さ %d<br>↓', $height);
 echo '<br>';
-echo $dollar->symbol($dollar->currencyConversion());
+echo '三角形：' . $TriangleStrategy->getArea() . 'cm2';
 echo '<br>';
-echo $euro->symbol($euro->currencyConversion());
+echo '四角形：' . $SquareStrategy->getArea() . 'cm2';
 echo '<br>';
-echo $pond->symbol($pond->currencyConversion());
-echo '<br>';
-echo $Yuan->symbol($Yuan->currencyConversion());
+echo '円：' . $CircleStrategy->getArea() . 'cm2';
 echo '<br>';
